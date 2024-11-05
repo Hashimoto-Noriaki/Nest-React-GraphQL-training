@@ -28,3 +28,13 @@ npx prettier --write .
 
 
 <img width="1440" alt="スクリーンショット 2024-11-03 13 19 23" src="https://github.com/user-attachments/assets/f5548496-bac8-4432-bbb1-c14aeb548c0d">
+
+### マイグレーション実行
+```
+npx prisma migrate dev --name init
+```
+
+### テーブルの確認のためにPrisma Studio
+```
+npx prisma studio
+```

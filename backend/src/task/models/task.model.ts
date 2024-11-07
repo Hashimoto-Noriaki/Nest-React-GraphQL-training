@@ -1,11 +1,9 @@
-//モデルからGraphQLのスキーマを生成する
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Status } from '@prisma/client';
 
 @ObjectType()
 export class Task {
-  //TSのフィールドをGraphQLのスキーマのフィールドに変換
-  @Field(() => Int) //GraphQLの場合、先頭が大文字
+  @Field(() => Int)
   id: number;
 
   @Field()
@@ -17,12 +15,12 @@ export class Task {
   @Field()
   status: Status;
 
-  @Field({ nullable: true }) //fieldにnullを許容
+  @Field({ nullable: true })
   description: string;
 
   @Field()
-  created_at: Date;
+  createdAt: Date; // createdAt に修正
 
   @Field()
-  updated_at: Date;
+  updatedAt: Date; // updatedAt に修正
 }

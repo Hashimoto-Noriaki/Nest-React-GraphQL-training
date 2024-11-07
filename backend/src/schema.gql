@@ -8,8 +8,8 @@ type Task {
   dueDate: String!
   status: String!
   description: String
-  created_at: DateTime!
-  updated_at: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """

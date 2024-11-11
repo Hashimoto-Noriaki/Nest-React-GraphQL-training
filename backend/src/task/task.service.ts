@@ -11,15 +11,14 @@ export class TaskService {
   // getTasks()メソッドの修正
   async getTasks(): Promise<TaskModel[]> {
     const tasks = await this.prismaService.task.findMany();
-    
     // Prisma の Task 型を GraphQL の TaskModel 型に変換
-    return tasks.map(task => this.mapToTaskModel(task));
+    return tasks.map((task) => this.mapToTaskModel(task));
   }
 
   // createTask()メソッドの修正
   async createTask(createTaskInput: CreateTaskInput): Promise<TaskModel> {
     const { name, dueDate, description } = createTaskInput;
-    
+
     const createdTask = await this.prismaService.task.create({
       data: {
         name,
@@ -40,8 +39,8 @@ export class TaskService {
       dueDate: task.dueDate,
       status: task.status,
       description: task.description,
-      createdAt: task.createAt,  // ここを修正
-      updatedAt: task.updateAt,  // ここを修正
+      createdAt: task.createAt, // ここを修正
+      updatedAt: task.updateAt, // ここを修正
     };
   }
 }

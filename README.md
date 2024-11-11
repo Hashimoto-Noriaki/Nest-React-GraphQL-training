@@ -2,6 +2,11 @@
 
 https://docs.nestjs.com/
 
+### docker起動
+```
+docker compose up -d
+```
+
 ### サーバー起動
 
 ```

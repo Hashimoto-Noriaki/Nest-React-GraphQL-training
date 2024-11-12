@@ -45,6 +45,17 @@ export class TaskService {
     return this.mapToTaskModel(updatedTask);
   }
 
+  // deleteTask()メソッド
+  async deleteTask(id: number): Promise<TaskModel> {
+    // 指定された ID のタスクを削除し、削除されたタスク情報を取得
+    const deletedTask = await this.prismaService.task.delete({
+      where: { id },
+    });
+
+    // 削除したタスク情報を TaskModel 型で返す
+    return this.mapToTaskModel(deletedTask);
+  }
+
   // Prisma の Task を GraphQL の TaskModel に変換するヘルパーメソッド
   private mapToTaskModel(task: Task): TaskModel {
     return {

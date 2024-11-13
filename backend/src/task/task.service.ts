@@ -18,13 +18,14 @@ export class TaskService {
 
   // createTask()メソッド
   async createTask(createTaskInput: CreateTaskInput): Promise<TaskModel> {
-    const { name, dueDate, description } = createTaskInput;
+    const { name, dueDate, description, userId } = createTaskInput;
 
     const createdTask = await this.prismaService.task.create({
       data: {
         name,
         dueDate,
         description,
+        user: { connect: { id: userId } }, // user フィールドの設定
       },
     });
 

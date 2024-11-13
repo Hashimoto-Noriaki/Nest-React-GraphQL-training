@@ -10,8 +10,10 @@ export class TaskService {
   constructor(private readonly prismaService: PrismaService) {}
 
   // getTasks()メソッド
-  async getTasks(): Promise<TaskModel[]> {
-    const tasks = await this.prismaService.task.findMany();
+  async getTasks(userId: number): Promise<TaskModel[]> {
+    const tasks = await this.prismaService.task.findMany({
+      where: { userId },
+    });
     // Prisma の Task 型を GraphQL の TaskModel 型に変換
     return tasks.map((task) => this.mapToTaskModel(task));
   }
@@ -25,7 +27,7 @@ export class TaskService {
         name,
         dueDate,
         description,
-        user: { connect: { id: userId } }, // user フィールドの設定
+        userId,
       },
     });
 

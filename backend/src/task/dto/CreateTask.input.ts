@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsNotEmpty, IsDateString, IsInt } from 'class-validator';
 
 @InputType()
@@ -14,8 +14,6 @@ export class CreateTaskInput {
   @Field({ nullable: true })
   description?: string;
 
-  @Field()
-  @IsNotEmpty()
-  @IsInt()
-  userId: number; // userId フィールドを追加
+  @Field(() => Int ) 
+  userId: number;
 }

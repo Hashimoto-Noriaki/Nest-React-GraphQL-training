@@ -9,8 +9,10 @@ export class TaskResolver {
   constructor(private readonly taskService: TaskService) {}
 
   @Query(() => [TaskModel], { nullable: 'items' })
-  async getTasks(): Promise<TaskModel[]> {
-    return this.taskService.getTasks();
+  async getTasks(
+    @Args('userId', { type: () => Int }) userId: number,
+  ): Promise<TaskModel[]> {
+    return this.taskService.getTasks(userId);
   }
 
   @Mutation(() => TaskModel)

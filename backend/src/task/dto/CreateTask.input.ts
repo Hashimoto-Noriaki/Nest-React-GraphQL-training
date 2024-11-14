@@ -14,6 +14,6 @@ export class CreateTaskInput {
   @Field({ nullable: true })
   description?: string;
 
-  @Field(() => Int ) 
+  @Field(() => Int)
   userId: number;
 }

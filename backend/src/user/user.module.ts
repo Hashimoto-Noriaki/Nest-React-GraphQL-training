@@ -3,6 +3,7 @@ import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
 
 @Module({
-  providers: [UserResolver, UserService]
+  imports: [PrismaModule],
+  providers: [UserResolver, UserService],
 })
 export class UserModule {}

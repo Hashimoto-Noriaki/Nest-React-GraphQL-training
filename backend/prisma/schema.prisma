@@ -22,7 +22,6 @@ model Task {
   createAt    DateTime @default(now()) @db.Timestamp(0)
   updateAt    DateTime @updatedAt @db.Timestamp(0)
   userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Status {
@@ -32,11 +31,11 @@ enum Status {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(255)
-  email String @unique @db.VarChar(255)
-  password String @db.VarChar(255)
-  createAt    DateTime @default(now()) @db.Timestamp(0)
-  updateAt    DateTime @updatedAt @db.Timestamp(0)
-  task Task[]
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
+
 }

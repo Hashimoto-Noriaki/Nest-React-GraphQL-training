@@ -25,8 +25,14 @@ export class UserService {
       id: createdUser.id,
       name: createdUser.name,
       email: createdUser.email,
-      createdAt: createdUser.createAt,
-      updatedAt: createdUser.updateAt,
+      createdAt: createdUser.createdAt,
+      updatedAt: createdUser.updatedAt,
     };
+  }
+
+  async getUser(email: string): Promise<UserModel> {
+    return await this.prismaService.user.findUnique({
+      where: { email },
+    });
   }
 }

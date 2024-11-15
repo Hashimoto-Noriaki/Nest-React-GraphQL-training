@@ -27,6 +27,7 @@ type UserModel {
 
 type Query {
   getTasks(userId: Int!): [Task]!
+  getUser(email: String!): UserModel
 }
 
 type Mutation {

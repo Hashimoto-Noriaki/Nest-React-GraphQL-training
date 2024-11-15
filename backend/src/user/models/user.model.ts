@@ -1,8 +1,7 @@
-// src/user/models/user.model.ts
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class UserModel {
+export class User {
   @Field()
   id: number;
 

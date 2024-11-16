@@ -17,7 +17,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type UserModel {
+type User {
   id: Float!
   name: String!
   email: String!
@@ -25,16 +25,22 @@ type UserModel {
   updatedAt: DateTime!
 }
 
+type SignInResponse {
+  accessToken: String!
+  user: User!
+}
+
 type Query {
   getTasks(userId: Int!): [Task]!
-  getUser(email: String!): UserModel
+  getUser(email: String!): User
 }
 
 type Mutation {
   createTask(createTaskInput: CreateTaskInput!): Task!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
   deleteTask(id: Int!): Task!
-  createUser(createUserInput: CreateUserInput!): UserModel!
+  createUser(createUserInput: CreateUserInput!): User!
+  signIn(signInInput: SignInInput!): SignInResponse!
 }
 
 input CreateTaskInput {
@@ -54,6 +60,11 @@ input UpdateTaskInput {
 
 input CreateUserInput {
   name: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
   email: String!
   password: String!
 }

@@ -1,19 +1,23 @@
 import { Module } from '@nestjs/common';
-import { AuthResolver } from './auth.resolver';
-import { AuthService } from './auth.service';
-import { User } from 'src/user/models/user.model';
-import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserModule } from '../user/user.module';
+import { AuthService } from './auth.service';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
-    User,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
+    ConfigModule.forRoot(),  // ConfigModuleをセットアップ
+    JwtModule.registerAsync({
+      imports: [ConfigModule],  // ConfigModuleをインポート
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),  // JWT_SECRETを取得
+        signOptions: { expiresIn: '1h' },  // トークンの有効期限を設定
+      }),
     }),
+    UserModule,  // UserModule をインポート
   ],
-  providers: [AuthResolver, AuthService],
+  providers: [AuthService, AuthResolver],
 })
 export class AuthModule {}

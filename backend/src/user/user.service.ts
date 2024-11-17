@@ -8,7 +8,9 @@ import * as bcrypt from 'bcrypt';
 export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async createUser(createUserInput: CreateUserInput): Promise<Omit<User, 'password'>> {
+  async createUser(
+    createUserInput: CreateUserInput,
+  ): Promise<Omit<User, 'password'>> {
     const { name, email, password } = createUserInput;
     const hashedPassword = await bcrypt.hash(password, 10);
 

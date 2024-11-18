@@ -4,20 +4,21 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from '../user/user.module';
 import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),  // ConfigModuleをセットアップ
+    ConfigModule.forRoot(), // ConfigModuleをセットアップ
     JwtModule.registerAsync({
-      imports: [ConfigModule],  // ConfigModuleをインポート
+      imports: [ConfigModule], // ConfigModuleをインポート
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),  // JWT_SECRETを取得
-        signOptions: { expiresIn: '1h' },  // トークンの有効期限を設定
+        secret: configService.get<string>('JWT_SECRET'), // JWT_SECRETを取得
+        signOptions: { expiresIn: '1h' }, // トークンの有効期限を設定
       }),
     }),
-    UserModule,  // UserModule をインポート
+    UserModule, // UserModule をインポート
   ],
-  providers: [AuthService, AuthResolver],
+  providers: [AuthService, AuthResolver, JwtStrategy],
 })
 export class AuthModule {}

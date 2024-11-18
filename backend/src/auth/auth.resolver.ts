@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { AuthService } from './auth.service';  // 正しいインポート
+import { AuthService } from './auth.service'; // 正しいインポート
 import { SignInInput } from './dto/signIn.input';
 import { SignInResponse } from './dto/signInResponse';
 
@@ -21,6 +21,6 @@ export class AuthResolver {
       throw new Error('Invalid credentials');
     }
 
-    return await this.authService.signIn(user);  // サインイン処理を実行
+    return await this.authService.signIn(user); // サインイン処理を実行
   }
 }

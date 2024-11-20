@@ -1,9 +1,16 @@
 import './App.css'
+import Top from './components/Top'
+import SignUp from './components/SignUp'
+import SignIn from './components/SignIn'
+import NotFound from './components/NotFound'
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello React</h1>
+    <Top />
+    <SignUp />
+    <SignIn />
+    <NotFound />
     </div>
   )
 }

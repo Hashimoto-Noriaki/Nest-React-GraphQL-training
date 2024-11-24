@@ -19,3 +19,17 @@ export const PrivateRoute = ({ children }: Props) => {
 
     return <Navigate to="/signin"/>
 }
+
+export const GuestRoute = ({ children }: Props) => {
+    const authInfo = useAuth();
+
+    if(!authInfo.checked){
+        return<div>Loading...</div>
+    }
+
+    if(!authInfo.isAuthenticated){
+        return <Navigate to='/'/>
+    }
+
+    return <>{children}</>
+}

@@ -2,7 +2,7 @@ import { useEffect,useState } from "react"
 import { jwtDecode } from "jwt-decode";
 import { Payload } from "../types/payload";
 
-export const UseAuth =() => {
+export const useAuth =() => {
     const [authInfo,setAuthInfo] = useState<{
         checked: boolean,
         isAuthenticated: boolean,

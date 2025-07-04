@@ -1,3 +1,7 @@
+import SignIn from './components/pages/SignIn'
+import SignUp from './components/pages/SignUp'
+import MainPage from './components/pages/MainPage'
+import NotFound from './components/pages/NotFound'
 import './App.css'
 
 function App() {
@@ -5,7 +9,10 @@ function App() {
   return (
     <>
       <div className="App">
-        <h1>Reactやるぞー</h1>
+        <SignIn/>
+        <SignUp/>
+        <MainPage/>
+        <NotFound/>
       </div>
     </>
   )

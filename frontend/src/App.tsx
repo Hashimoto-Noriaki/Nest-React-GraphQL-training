@@ -1,5 +1,4 @@
 import './App.css'
-import 'modern-css-reset';
 
 function App() {
 

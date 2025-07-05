@@ -4,7 +4,7 @@ import SignUp from './components/pages/SignUp'
 import Main from './components/pages/Main'
 import NotFound from './components/pages/NotFound'
 import { GuestRoute,PrivateRoute } from './AuthRoute'
-import client from './apollo/client'
+import client from './apolloClient'
 import { ApolloProvider } from '@apollo/client'
 import './App.css'
 

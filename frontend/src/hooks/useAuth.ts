@@ -1,6 +1,7 @@
 //ここではBEから受け取ったJWTが存在するか、有効期限が切れていないかを確認
-import { useState,yseEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+
 export const useAuth = () => {
     const [authInfo,setAuthInfo] = useState<{
         checked:boolean;//認証の処理が済んでいるか

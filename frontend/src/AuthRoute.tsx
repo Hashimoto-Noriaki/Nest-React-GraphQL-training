@@ -13,7 +13,7 @@ export const PrivateRoute = ({children}:Props) => {
         return <div>Loading...</div>; // 認証チェック中の表示
     }
 
-    if(autuInfo.authenticated){
+    if(authInfo.authenticated){
         return <>{children}</>; // 認証済みの場合、子コンポーネントを表示 true
     }
 
@@ -27,7 +27,7 @@ export const GuestRoute = ({children}:Props) => {
         return <div>Loading...</div>; // 認証チェック中の表示
     }
 
-    if(autuInfo.authenticated){
+    if(authInfo.authenticated){
         return <Navigate to='/'/>; // 認証済みの場合、子コンポーネントを表示 true
     }
 
